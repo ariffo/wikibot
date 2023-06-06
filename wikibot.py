@@ -10,7 +10,7 @@ try:
     wikipedia.set_lang('es')
     page = wikipedia.page(title=looking_for, auto_suggest=False).content[:10000]
 
-    message = {'role': 'user', 'content': f'resúmeme el siguiente artículo: {page}'}
+    message = {'role': 'user', 'content': f'lístame los 3 puntos principales del artículo: {page}'}
     messages = []
     messages.append(message)
 
