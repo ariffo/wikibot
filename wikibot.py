@@ -19,23 +19,30 @@ try:
     print(response.choices[0].message.content)
 
 
-except openai.error.RateLimitError as e:
-    print('Ha ocurrido un error con el límite de consultas por minutos y/o tokens por minutos.')
-    print(f'\n{e}')
-
 except openai.error.InvalidRequestError as e:
-    print('Ha ocurrido un error con tu consulta, está mal formulada o le faltan/sobran parámetros')
-    print(f'\n{e}')
+    print('Error con tu consulta, asegúrate que los parámetros estén bien\n')
+    print(e)
 
 except openai.error.AuthenticationError as e:
-    print('Ha ocurrido un error con tu key de autenticación, comprueba que sea válida')
-    print(f'\n{e}')
+    print('Error al autenticarte. Revisa que la api key sea válida!\n')
+    print(e)
 
-except openai.error.ServiceUnavailableError	as e:
-    print('Se produjo un error con los servidores de OpenAI')
-    print(f'\n{e}')
+except openai.error.RateLimitError as e:
+    print('Error! Límite de consultas y/o token por minuto alcanzado!\n')
+    print(e)
 
-except openai.error.APIConnectionError	as e:
-    print('''Problemas con la conexión. Asegúrate que esté bien tu internet, no tengas una proxy o firewall
-    que bloquee la conexión, o tengas problemas con los certificados SSL''')
-    print(f'\n{e}')
+except openai.error.APIError as e:
+    print('Error! Ah ocurrido un problema con la api de OpenAi\n')
+    print(e)
+
+except openai.error.Timeout as e:
+    print('Error! Timeout en el request\n')
+    print(e)
+
+except openai.error.APIConnectionError as e:
+    print('Error! Revisa tu conexión a internet, proxys, firewall, etc.\n')
+    print(e)
+
+except openai.error.ServiceUnavailableError as e:
+    print('Error! Problemas con el servidor de OpenAI!\n')
+    print(e)
