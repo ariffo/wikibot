@@ -20,7 +20,22 @@ try:
 
 
 except openai.error.RateLimitError as e:
-    print(e)
+    print('Ha ocurrido un error con el límite de consultas por minutos y/o tokens por minutos.')
+    print(f'\n{e}')
 
 except openai.error.InvalidRequestError as e:
-    print(e)
+    print('Ha ocurrido un error con tu consulta, está mal formulada o le faltan/sobran parámetros')
+    print(f'\n{e}')
+
+except openai.error.AuthenticationError as e:
+    print('Ha ocurrido un error con tu key de autenticación, comprueba que sea válida')
+    print(f'\n{e}')
+
+except openai.error.ServiceUnavailableError	as e:
+    print('Se produjo un error con los servidores de OpenAI')
+    print(f'\n{e}')
+
+except openai.error.APIConnectionError	as e:
+    print('''Problemas con la conexión. Asegúrate que esté bien tu internet, no tengas una proxy o firewall
+    que bloquee la conexión, o tengas problemas con los certificados SSL''')
+    print(f'\n{e}')
