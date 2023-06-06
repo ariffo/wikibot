@@ -8,7 +8,7 @@ try:
     looking_for = input('¿Acerca de qué tema deseas saber?: ')
 
     wikipedia.set_lang('es')
-    page = wikipedia.page(title=looking_for, auto_suggest=False).content[:1000]
+    page = wikipedia.page(title=looking_for, auto_suggest=False).content[:10000]
 
     message = {'role': 'user', 'content': f'resúmeme el siguiente artículo: {page}'}
     messages = []
